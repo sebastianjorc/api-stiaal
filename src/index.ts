@@ -37,10 +37,15 @@ app.use(deserializeUser);
   })
 */
 
-  app.get('/ping', (_req: Request, res: Response) => {
-    return res.send('pong 🏓')
-  })
-  import User from './models/user.model';
+app.get('/ping', (_req: Request, res: Response) => {
+  return res.send('pong 🏓')
+})
+import User from './models/user.model';
+app.listen(port, async () => {
+  try{
+  logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+  // Mongodb connection
+  await connect(); 
   app.get('', (req: Request, res: Response) => { res.send('Express + TypeScript Server is running'); });
   app.get('/api/users', async (req : Request, res : Response) => {
     try {
@@ -52,13 +57,7 @@ app.use(deserializeUser);
       return res.status(500).json({ message: err.message });
     }    
   });
-
-app.listen(port, async () => {
-  try{
-  logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
-  // Mongodb connection
-  await connect(); 
-  routes(app) // MIDDLE WARE
+  //routes(app) // MIDDLE WARE
   }
   catch(error){console.log(`erro en app.listen \n ${error}`);}
 });
