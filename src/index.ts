@@ -12,7 +12,7 @@ import cors from 'cors';
   // Setting: Configuración del servidor
   dotenv.config();
   const app = express(); 
-  const port = config.get<number>('port'); //process.env.PORT || 3000;
+  const port = 9000;//config.get<number>('port'); //process.env.PORT || 3000;
 
 //Middleware: funciones que ayudan a procesar datos 
 app.use(morgan('dev')); 

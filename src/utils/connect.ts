@@ -4,7 +4,7 @@ import config from 'config';
 import logger from './logger';
 
 async function connect(){
-  const dbUri = config.get<string>("dbUri")
+  const dbUri = "mongodb+srv://admin:admin@stiaalcluster.6h9tltk.mongodb.net/StiaalDB?retryWrites=true&w=majority";//config.get<string>("dbUri")
   try {
     mongoose.set('useNewUrlParser', true);   
     mongoose.set('useUnifiedTopology', true);

@@ -14,11 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // for database connection
 const mongoose_1 = __importDefault(require("mongoose"));
-const config_1 = __importDefault(require("config"));
 const logger_1 = __importDefault(require("./logger"));
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
-        const dbUri = config_1.default.get("dbUri");
+        const dbUri = "mongodb+srv://admin:admin@stiaalcluster.6h9tltk.mongodb.net/StiaalDB?retryWrites=true&w=majority"; //config.get<string>("dbUri")
         try {
             mongoose_1.default.set('useNewUrlParser', true);
             mongoose_1.default.set('useUnifiedTopology', true);
