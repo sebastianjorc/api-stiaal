@@ -40,7 +40,18 @@ app.use(deserializeUser);
   app.get('/ping', (_req: Request, res: Response) => {
     return res.send('pong 🏓')
   })
+  import User from './models/user.model';
   app.get('', (req: Request, res: Response) => { res.send('Express + TypeScript Server is running'); });
+  app.get('/api/users', async (req : Request, res : Response) => {
+    try {
+      //const id = req.params.id;
+      const user = await User.find();
+      return res.json(user);
+    } 
+    catch (err : any) {
+      return res.status(500).json({ message: err.message });
+    }    
+  });
 
 app.listen(port, async () => {
   try{
