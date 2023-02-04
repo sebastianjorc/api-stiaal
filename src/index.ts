@@ -1,7 +1,6 @@
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 import express, { Request, Response } from 'express'
 import deserializeUser from './middleware/deserializeUser';
-import config from 'config';
 import connect from './utils/connect';
 import logger from './utils/logger';
 import routes from './routes/index.route';
@@ -10,7 +9,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
   // Setting: Configuración del servidor
-  dotenv.config();
+//  dotenv.config();
   const app = express(); 
   const port = 9000;//config.get<number>('port'); //process.env.PORT || 3000;
 

@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // for database connection
 const mongoose_1 = __importDefault(require("mongoose"));
+//import config from 'config';
 const logger_1 = __importDefault(require("./logger"));
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -32,7 +33,7 @@ function connect() {
             logger_1.default.info('DB connected');
         }
         catch (error) {
-            console.log(`ERROR al conectarse con la base de datos ${error}`);
+            console.log(`Connect: ERROR al conectarse con la base de datos ${error}`);
             process.exit(1);
         }
     });

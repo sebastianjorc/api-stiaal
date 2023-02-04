@@ -9,6 +9,12 @@ const stream = (0, pino_pretty_1.default)({
     colorize: true
 });
 const log = (0, pino_1.default)(stream);
-log.info('hi');
+try {
+    log.info('hi');
+}
+catch (error) {
+    console.log(`Error en logger.ts \n ${error}`);
+}
+;
 exports.default = log;
 //# sourceMappingURL=logger.js.map

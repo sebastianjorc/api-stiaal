@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
+//import dotenv from 'dotenv';
 const express_1 = __importDefault(require("express"));
 const deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
 const connect_1 = __importDefault(require("./utils/connect"));
@@ -22,7 +22,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 // Setting: Configuración del servidor
-dotenv_1.default.config();
+//  dotenv.config();
 const app = (0, express_1.default)();
 const port = 9000; //config.get<number>('port'); //process.env.PORT || 3000;
 //Middleware: funciones que ayudan a procesar datos 
