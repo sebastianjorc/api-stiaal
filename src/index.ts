@@ -39,8 +39,11 @@ app.use(deserializeUser);
 */
   
 app.listen(port, async () => {
+  try{
   logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
   // Mongodb connection
   await connect(); 
   routes(app) // MIDDLE WARE
+  }
+  catch(error){console.log(`erro en app.listen \n ${error}`);}
 });

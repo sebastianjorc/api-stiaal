@@ -48,9 +48,14 @@ app.use(deserializeUser_1.default);
   })
 */
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    logger_1.default.info(`⚡️[server]: Server is running at http://localhost:${port}`);
-    // Mongodb connection
-    yield (0, connect_1.default)();
-    (0, index_route_1.default)(app); // MIDDLE WARE
+    try {
+        logger_1.default.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+        // Mongodb connection
+        yield (0, connect_1.default)();
+        (0, index_route_1.default)(app); // MIDDLE WARE
+    }
+    catch (error) {
+        console.log(`erro en app.listen \n ${error}`);
+    }
 }));
 //# sourceMappingURL=index.js.map
