@@ -15,13 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
+const config_1 = __importDefault(require("config"));
 const connect_1 = __importDefault(require("./utils/connect"));
 const logger_1 = __importDefault(require("./utils/logger"));
 const index_route_1 = __importDefault(require("./routes/index.route"));
 // Setting: Configuración del servidor
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT || 3000; //config.get<number>('port');
+const port = config_1.default.get('port'); //process.env.PORT || 3000;
 //Middleware: funciones que ayudan a procesar datos 
 //app.use(morgan('dev')); 
 app.use(express_1.default.json());

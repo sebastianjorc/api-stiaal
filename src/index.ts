@@ -9,7 +9,7 @@ import routes from './routes/index.route';
   // Setting: Configuración del servidor
   dotenv.config();
   const app = express(); 
-  const port = process.env.PORT || 3000;//config.get<number>('port');
+  const port = config.get<number>('port'); //process.env.PORT || 3000;
 
 //Middleware: funciones que ayudan a procesar datos 
 //app.use(morgan('dev')); 
