@@ -7,6 +7,7 @@ import routes from './routes/index.route';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
+import User from './models/user.model';
 
 // Setting: Configuración del servidor
   dotenv.config();
@@ -37,13 +38,23 @@ app.use(deserializeUser);
     return console.log(`Server is listening on ${port}`)
   })
 */
-  
-app.listen(port, async () => {
-  try{
-  logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
-  // Mongodb connection
-  await connect(); 
-  routes(app) // MIDDLE WARE
-  }
-  catch(error){console.log(`erro en app.listen \n ${error}`);}
+
+try{
+logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+// Mongodb connection
+connect(); 
+app.get('', async (req: Request, res: Response) => { res.send('Express + TypeScript Server is running'); });
+app.get('/healthcheck', async (req: Request, res: Response) => res.sendStatus(200));
+app.get('/api/users', async (req : Request, res : Response) => {
+  try {
+    //const id = req.params.id;
+    const user = await User.find();
+    return res.json(user);
+  } 
+  catch (err : any) {
+    return res.status(500).json({ message: err.message });
+  }    
 });
+//routes(app) // MIDDLE WARE
+}
+catch(error){console.log(`erro en app.listen \n ${error}`);}
