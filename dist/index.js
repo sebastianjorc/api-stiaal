@@ -12,18 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//import dotenv from 'dotenv';
+const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
 const connect_1 = __importDefault(require("./utils/connect"));
+const logger_1 = __importDefault(require("./utils/logger"));
 const index_route_1 = __importDefault(require("./routes/index.route"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 // Setting: Configuración del servidor
-//  dotenv.config();
+dotenv_1.default.config();
+const env = process.env.NODE_ENV || 'development';
 const app = (0, express_1.default)();
-const port = 3000; //config.get<number>('port'); //process.env.PORT || 3000;
+const port = 9000; //config.get<number>('port'); //process.env.PORT || 3000;
 //Middleware: funciones que ayudan a procesar datos 
 app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
@@ -46,27 +48,15 @@ app.use(deserializeUser_1.default);
     return console.log(`Server is listening on ${port}`)
   })
 */
-const user_model_1 = __importDefault(require("./models/user.model"));
-app.get('', (req, res) => { res.send('Express + TypeScript Server is running'); });
-app.get('/api/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        //const id = req.params.id;
-        const user = yield user_model_1.default.find();
-        return res.json(user);
+        logger_1.default.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+        // Mongodb connection
+        yield (0, connect_1.default)();
+        (0, index_route_1.default)(app); // MIDDLE WARE
     }
-    catch (err) {
-        return res.status(500).json({ message: err.message });
+    catch (error) {
+        console.log(`erro en app.listen \n ${error}`);
     }
 }));
-//app.listen(port, async () => {
-try {
-    //logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
-    // Mongodb connection
-    (0, connect_1.default)();
-    (0, index_route_1.default)(app); // MIDDLE WARE
-}
-catch (error) {
-    console.log(`error en app.listen \n ${error}`);
-}
-//});
 //# sourceMappingURL=index.js.map

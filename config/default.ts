@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
-  port: 9000,
+  port: 3000,
   dbUri: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_USER_PASSWORD}@stiaalcluster.6h9tltk.mongodb.net/StiaalDB?retryWrites=true&w=majority`,
   saltWorkFactor: 10,
   accessTokenTtl: '15m',

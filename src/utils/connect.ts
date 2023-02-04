@@ -1,7 +1,8 @@
 // for database connection
 import mongoose from 'mongoose';
-//import config from 'config';
+import config from 'config';
 import logger from './logger';
+const env = process.env.NODE_ENV || 'development';
 
 async function connect(){
   const dbUri = "mongodb+srv://admin:admin@stiaalcluster.6h9tltk.mongodb.net/StiaalDB?retryWrites=true&w=majority";//config.get<string>("dbUri")

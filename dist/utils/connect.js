@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // for database connection
 const mongoose_1 = __importDefault(require("mongoose"));
-//import config from 'config';
 const logger_1 = __importDefault(require("./logger"));
+const env = process.env.NODE_ENV || 'development';
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         const dbUri = "mongodb+srv://admin:admin@stiaalcluster.6h9tltk.mongodb.net/StiaalDB?retryWrites=true&w=majority"; //config.get<string>("dbUri")
