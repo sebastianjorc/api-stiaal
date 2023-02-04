@@ -36,13 +36,21 @@ app.use(deserializeUser);
     return console.log(`Server is listening on ${port}`)
   })
 */
-  
+
+app.get('/', (_req: Request, res: Response) => {
+  return res.send('Express Typescript on Vercel')
+})
+app.get('/ping', (_req: Request, res: Response) => {
+  return res.send('pong 🏓')
+})
+
 app.listen(port, async () => {
   try{
   logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+  return console.log(`Server is listening on ${port}`)
   // Mongodb connection
   await connect(); 
-  routes(app) // MIDDLE WARE
+  //routes(app) // MIDDLE WARE
   }
   catch(error){console.log(`erro en app.listen \n ${error}`);}
 });

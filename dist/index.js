@@ -17,7 +17,6 @@ const express_1 = __importDefault(require("express"));
 const deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
 const connect_1 = __importDefault(require("./utils/connect"));
 const logger_1 = __importDefault(require("./utils/logger"));
-const index_route_1 = __importDefault(require("./routes/index.route"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
@@ -47,12 +46,19 @@ app.use(deserializeUser_1.default);
     return console.log(`Server is listening on ${port}`)
   })
 */
+app.get('/', (_req, res) => {
+    return res.send('Express Typescript on Vercel');
+});
+app.get('/ping', (_req, res) => {
+    return res.send('pong 🏓');
+});
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         logger_1.default.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+        return console.log(`Server is listening on ${port}`);
         // Mongodb connection
         yield (0, connect_1.default)();
-        (0, index_route_1.default)(app); // MIDDLE WARE
+        //routes(app) // MIDDLE WARE
     }
     catch (error) {
         console.log(`erro en app.listen \n ${error}`);
