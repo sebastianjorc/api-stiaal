@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const deserializeUser_1 = __importDefault(require("./middleware/deserializeUser"));
 const connect_1 = __importDefault(require("./utils/connect"));
-const logger_1 = __importDefault(require("./utils/logger"));
+const index_route_1 = __importDefault(require("./routes/index.route"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
@@ -46,30 +37,15 @@ app.use(deserializeUser_1.default);
     return console.log(`Server is listening on ${port}`)
   })
 */
-app.get('/ping', (_req, res) => {
-    return res.send('pong 🏓');
-});
-const user_model_1 = __importDefault(require("./models/user.model"));
-app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        logger_1.default.info(`⚡️[server]: Server is running at http://localhost:${port}`);
-        // Mongodb connection
-        yield (0, connect_1.default)();
-        app.get('', (req, res) => { res.send('Express + TypeScript Server is running'); });
-        app.get('/api/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                //const id = req.params.id;
-                const user = yield user_model_1.default.find();
-                return res.json(user);
-            }
-            catch (err) {
-                return res.status(500).json({ message: err.message });
-            }
-        }));
-        //routes(app) // MIDDLE WARE
-    }
-    catch (error) {
-        console.log(`erro en app.listen \n ${error}`);
-    }
-}));
+//app.listen(port, async () => {
+try {
+    //logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+    // Mongodb connection
+    (0, connect_1.default)();
+    (0, index_route_1.default)(app); // MIDDLE WARE
+}
+catch (error) {
+    console.log(`erro en app.listen \n ${error}`);
+}
+//});
 //# sourceMappingURL=index.js.map

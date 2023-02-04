@@ -36,28 +36,13 @@ app.use(deserializeUser);
     return console.log(`Server is listening on ${port}`)
   })
 */
-
-app.get('/ping', (_req: Request, res: Response) => {
-  return res.send('pong 🏓')
-})
-import User from './models/user.model';
-app.listen(port, async () => {
+  
+//app.listen(port, async () => {
   try{
-  logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
+  //logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
   // Mongodb connection
-  await connect(); 
-  app.get('', (req: Request, res: Response) => { res.send('Express + TypeScript Server is running'); });
-  app.get('/api/users', async (req : Request, res : Response) => {
-    try {
-      //const id = req.params.id;
-      const user = await User.find();
-      return res.json(user);
-    } 
-    catch (err : any) {
-      return res.status(500).json({ message: err.message });
-    }    
-  });
-  //routes(app) // MIDDLE WARE
+  connect(); 
+  routes(app) // MIDDLE WARE
   }
   catch(error){console.log(`erro en app.listen \n ${error}`);}
-});
+//});
