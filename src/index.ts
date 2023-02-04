@@ -5,6 +5,7 @@ import config from 'config';
 import connect from './utils/connect';
 import logger from './utils/logger';
 import routes from './routes/index.route';
+import bodyParser from 'body-parser';
 
   // Setting: Configuración del servidor
   dotenv.config();
@@ -12,11 +13,11 @@ import routes from './routes/index.route';
   const port = config.get<number>('port'); //process.env.PORT || 3000;
 
 //Middleware: funciones que ayudan a procesar datos 
-//app.use(morgan('dev')); 
+app.use(morgan('dev')); 
 app.use(express.json());
-//app.use(cors({origin: 'http://localhost:4200'}))
-//app.use(bodyParser.json({limit:'50mb', type:'application/json'}));
-//app.use(bodyParser.urlencoded({limit:'50mb', extended:true}));
+app.use(cors({origin: 'http://localhost:4200'}))
+app.use(bodyParser.json({limit:'50mb', type:'application/json'}));
+app.use(bodyParser.urlencoded({limit:'50mb', extended:true}));
 
 //Starting the server
 //Routes: Encargada de las rutas del servidor
@@ -41,3 +42,11 @@ app.listen(port, async () => {
   await connect(); 
   routes(app) // MIDDLE WARE
 }); 
+
+function morgan(arg0: string): any {
+  throw new Error('Function not implemented.');
+}
+function cors(arg0: { origin: string; }): any {
+  throw new Error('Function not implemented.');
+}
+
