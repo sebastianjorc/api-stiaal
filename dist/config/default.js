@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.default = {
-    port: 9000,
+    port: 3000,
     dbUri: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_USER_PASSWORD}@stiaalcluster.6h9tltk.mongodb.net/StiaalDB?retryWrites=true&w=majority`,
     saltWorkFactor: 10,
     accessTokenTtl: '15m',
