@@ -20,14 +20,16 @@ const connect_1 = __importDefault(require("./utils/connect"));
 const logger_1 = __importDefault(require("./utils/logger"));
 const index_route_1 = __importDefault(require("./routes/index.route"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const morgan_1 = __importDefault(require("morgan"));
+const cors_1 = __importDefault(require("cors"));
 // Setting: Configuración del servidor
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = config_1.default.get('port'); //process.env.PORT || 3000;
 //Middleware: funciones que ayudan a procesar datos 
-app.use(morgan('dev'));
+app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use((0, cors_1.default)({ origin: 'http://localhost:4200' }));
 app.use(body_parser_1.default.json({ limit: '50mb', type: 'application/json' }));
 app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true }));
 //Starting the server
@@ -52,10 +54,4 @@ app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, connect_1.default)();
     (0, index_route_1.default)(app); // MIDDLE WARE
 }));
-function morgan(arg0) {
-    throw new Error('Function not implemented.');
-}
-function cors(arg0) {
-    throw new Error('Function not implemented.');
-}
 //# sourceMappingURL=index.js.map

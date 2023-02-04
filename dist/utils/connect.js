@@ -20,7 +20,12 @@ function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         const dbUri = config_1.default.get("dbUri");
         try {
+            mongoose_1.default.set('useNewUrlParser', true);
+            mongoose_1.default.set('useUnifiedTopology', true);
             mongoose_1.default.set('strictQuery', true);
+            mongoose_1.default.set('useNewUrlParser', true);
+            mongoose_1.default.set('useFindAndModify', false);
+            mongoose_1.default.set('useCreateIndex', true);
             yield mongoose_1.default
                 .connect(dbUri)
                 .then(() => console.log("connected to mongodb atlas STIAAL"))

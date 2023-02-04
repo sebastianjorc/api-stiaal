@@ -6,6 +6,8 @@ import connect from './utils/connect';
 import logger from './utils/logger';
 import routes from './routes/index.route';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import cors from 'cors';
 
   // Setting: Configuración del servidor
   dotenv.config();
@@ -41,12 +43,4 @@ app.listen(port, async () => {
   // Mongodb connection
   await connect(); 
   routes(app) // MIDDLE WARE
-}); 
-
-function morgan(arg0: string): any {
-  throw new Error('Function not implemented.');
-}
-function cors(arg0: { origin: string; }): any {
-  throw new Error('Function not implemented.');
-}
-
+});
